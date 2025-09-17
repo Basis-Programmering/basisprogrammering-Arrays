@@ -4,10 +4,66 @@
     {
         static void Main(string[] args)
         {
-            PrintIntsArray();
-            PrintStringArray();
+            ChangeIntArrayLoop();
+        }
+        static void ChangeIntArrayLoop()
+        {
+            int[] numbers = { 12, 33, 532, 145, 1, 4565, 1 };
+
+            Console.WriteLine("Commands: c=change, p=print, q=quit");
+
+            while (true)
+            {
+                Console.Write("\n[c/p/q]: ");
+                string input = Console.ReadLine();
+
+                if (input == "q")
+                {
+                    Console.WriteLine("exiting...");
+                    break;
+                }
+
+                if (input == "p")
+                {
+                    PrintIntsArray(numbers);
+                    continue;
+                }
+
+                if (input == "c")
+                {
+                    Console.WriteLine($"Which index do your want to change?? (0..{numbers.Length - 1})");
+                    if (!int.TryParse(Console.ReadLine(), out int index) ||
+                        index < 0 || index >= numbers.Length)
+                    {
+                        Console.WriteLine("Invalid index!");
+                        continue;
+                    }
+
+                    Console.Write($"new value for index {index}: ");
+                    if (!int.TryParse(Console.ReadLine(), out int newValue))
+                    {
+                        Console.WriteLine("Invalid input!");
+                        continue;
+                    }
+
+                    numbers[index] = newValue;
+                    Console.WriteLine("Array updated:");
+                    PrintIntsArray(numbers);
+                }
+                else
+                {
+                    Console.WriteLine("Unkown command use: c/p/q.");
+                }
+            }
         }
 
+        static void PrintIntsArray(int[] array)
+        {
+            foreach (int n in array)
+            {
+                Console.WriteLine(n);
+            }
+        }      
         static void PrintIntsArray()
         {
             Console.WriteLine("int array:");
