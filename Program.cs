@@ -17,19 +17,18 @@
                 Console.Write("\n[c/p/q]: ");
                 string input = Console.ReadLine();
 
+
                 if (input == "q")
                 {
                     Console.WriteLine("exiting...");
                     break;
                 }
-
-                if (input == "p")
+                else if (input == "p")
                 {
                     PrintIntsArray(numbers);
                     continue;
                 }
-
-                if (input == "c")
+                else if (input == "c")
                 {
                     Console.WriteLine($"Which index do your want to change?? (0..{numbers.Length - 1})");
                     if (!int.TryParse(Console.ReadLine(), out int index) ||
@@ -63,7 +62,7 @@
             {
                 Console.WriteLine(n);
             }
-        }      
+        }
         static void PrintIntsArray()
         {
             Console.WriteLine("int array:");
